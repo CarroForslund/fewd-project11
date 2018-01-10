@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import Search from './components/Search';
 import Nav from './components/Nav';
-import Result from './components/Result';
+import Container from './components/Container';
+
+import {
+  BrowserRouter,
+} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <Search />
-        <Nav />
-        <Result />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+
+          <Search />
+          <Nav />
+          <Container />
+
+        </div>
+      </BrowserRouter>
     );
   }
 }

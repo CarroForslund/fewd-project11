@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Coffee = () => (
+const Coffee = (props) => (
   <h2>Coffee</h2>
 );
 

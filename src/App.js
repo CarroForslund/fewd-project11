@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import apiKey from './data/config.js';
+
+import FetchData from './components/FetchData';
 import Search from './components/Search';
 import Nav from './components/Nav';
 import PhotoContainer from './components/PhotoContainer';
-import axios from 'axios';
-import apiKey from './data/config.js';
 
 import {
   BrowserRouter,
@@ -48,8 +50,9 @@ class App extends Component {
         <div className="container">
 
           <Search onSearch={this.performSearch} />
+          <Route component={Nav} />
           {/*<Nav tag={this.state.tag} />*/}
-          <Nav onClick={this.performSearch}/>
+
 
           {
             (this.state.loading)

@@ -7,6 +7,8 @@ import apiKey from './data/config.js';
 
 import {
   BrowserRouter,
+  Route,
+  Switch
 } from 'react-router-dom';
 
 class App extends Component {
@@ -14,7 +16,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      // tag: '',
+      tag: '',
       photos: [],
       loading: true
     };
@@ -29,7 +31,7 @@ class App extends Component {
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          // tag: tag,
+          tag: tag,
           photos: response.data.photos,
           loading: false
         });
@@ -52,8 +54,13 @@ class App extends Component {
           {
             (this.state.loading)
              ? <p>Loading...</p>
-             // : <PhotoContainer data={this.state.photos} tag={this.state.tag} />
-             : <PhotoContainer data={this.state.photos} />
+             :
+             <Switch>
+               <Route exact path="/" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
+               <Route path="/cats" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
+               <Route path="/coffee" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
+               <Route path="/computers" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
+             </Switch>
           }
 
         </div>

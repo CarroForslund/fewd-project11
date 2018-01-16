@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Redirect } from 'react';
 import Search from './components/Search';
 import Nav from './components/Nav';
+import NotFound from './components/NotFound';
 import PhotoContainer from './components/PhotoContainer';
 import axios from 'axios';
-import apiKey from './data/config.js';
+import apiKey from './config.js';
 
 import {
   BrowserRouter,
@@ -30,6 +31,7 @@ class App extends Component {
 
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
+        console.log(response.data.photos);
         this.setState({
           tag: tag,
           photos: response.data.photos,
@@ -48,18 +50,18 @@ class App extends Component {
         <div className="container">
 
           <Search onSearch={this.performSearch} />
-          {/*<Nav tag={this.state.tag} />*/}
-          <Nav onClick={this.performSearch}/>
+          <Route component={Nav} />
 
           {
             (this.state.loading)
              ? <p>Loading...</p>
              :
              <Switch>
-               <Route exact path="/" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
-               <Route path="/cats" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
-               <Route path="/coffee" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
-               <Route path="/computers" render={(routeProps) => ( <PhotoContainer data={this.state} />)} />
+               <Route exact path="/" render={ () => ( <PhotoContainer data={this.state} /> )} />
+               <Route path="/cats" render={ () => ( <PhotoContainer data={this.state} />)} />
+               <Route path="/coffee" render={ () => ( <PhotoContainer data={this.state} />)} />
+               <Route path="/computers" render={ () => ( <PhotoContainer data={this.state} />)} />
+               <Route component={NotFound} />
              </Switch>
           }
 

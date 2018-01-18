@@ -1,19 +1,13 @@
 import React from 'react';
-import Result from './Result';
-import Cats from './Cats';
-import Coffee from './Coffee';
-import Computers from './Computers';
 import Photo from './Photo';
-
-import {
-  Route,
-  Switch
-} from 'react-router-dom';
+import NotFound from './NotFound';
 
 const PhotoContainer = (props) => {
-  const tag = props.data.tag;
-  console.log(tag);
-  const results = props.data.photos.photo;
+
+  console.log('Hello Photo container');
+
+  const tag = props.tag;
+  const results = props.data.photo;
   let photos;
 
   photos = results.map(photo =>
@@ -25,9 +19,11 @@ const PhotoContainer = (props) => {
       <h2>{tag}</h2>
       <ul>
         {photos}
+        <NotFound />
       </ul>
     </div>
   );
+
 }
 
 

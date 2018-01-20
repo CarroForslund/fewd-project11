@@ -1,15 +1,17 @@
-import React, { Component, Redirect } from 'react';
+import React, { Component } from 'react';
 import Search from './components/Search';
 import Nav from './components/Nav';
 import NotFound from './components/NotFound';
 import PhotoContainer from './components/PhotoContainer';
+import FetchData from './components/FetchData';
 import axios from 'axios';
 import apiKey from './config.js';
 
 import {
   BrowserRouter,
   Route,
-  Switch
+  Switch,
+  Redirect,
 } from 'react-router-dom';
 
 class App extends Component {
@@ -57,11 +59,13 @@ class App extends Component {
              ? <p>Loading...</p>
              :
              <Switch>
-               <Route exact path="/" render={ () => ( <PhotoContainer data={this.state} /> )} />
+
+               <Route exact path="/" render={ () => ( <Redirect to="/cats" /> )} />
                <Route path="/cats" render={ () => ( <PhotoContainer data={this.state} />)} />
                <Route path="/coffee" render={ () => ( <PhotoContainer data={this.state} />)} />
                <Route path="/computers" render={ () => ( <PhotoContainer data={this.state} />)} />
                <Route component={NotFound} />
+
              </Switch>
           }
 

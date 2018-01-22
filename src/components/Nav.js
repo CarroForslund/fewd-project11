@@ -1,16 +1,14 @@
 import React from 'react';
-import NavItem from './NavItem';
-import Search from './Search';
+import { NavLink } from 'react-router-dom';
 
 const Nav = (props) => (
 
   <div>
-    <Search onSearch={this.performSearch} />
     <nav className="main-nav">
       <ul>
-        <NavItem link="cats" />
-        <NavItem link="coffee" />
-        <NavItem link="computers" />
+        <li><NavLink to={"/cat"}>Cat</NavLink></li>
+        <li><NavLink to={"/coffee"}>Coffee</NavLink></li>
+        <li><NavLink to={"/computer"}>Computer</NavLink></li>
       </ul>
     </nav>
   </div>

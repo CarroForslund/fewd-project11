@@ -23,6 +23,7 @@ export default class Search extends Component {
     console.log('handle submit e-value', e);
     e.preventDefault();
     this.onSearchChange(this.state.searchText);
+    PhotoContainer.loadContent(this.state.searchText);
     e.currentTarget.reset();
   }
 
@@ -33,7 +34,7 @@ export default class Search extends Component {
           onChange={this.onSearchChange}
           type="search"
           name="search"
-          ref={(input) => this.searchText = input}
+          ref={(input) => this.query = input}
           placeholder="Search" required
         />
         <button type="submit" id="submit" className="search-button">

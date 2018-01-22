@@ -16,14 +16,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Route component={Search} />
+          <Route path="/search" component={Search} />
           <Route component={Nav} />
           <Switch>
-            <Route exact path="/" render={ () => ( <Redirect to="/cat" /> )} />
-            <Route path="/cat" render={ () => ( <PhotoContainer tag="cat" />)} />
-            <Route path="/coffee" render={ () => ( <PhotoContainer tag="coffee" />)} />
-            <Route path="/computer" render={ () => ( <PhotoContainer tag="computer" />)} />
-            <Route path="/:tag" component={PhotoContainer} />
+            <Route exact path="/" render={ () => ( <Redirect to="/cats" /> )} />
+            <Route path="/cats" render={ () => ( <PhotoContainer tag='cats' />)} />
+            <Route path="/coffee" render={ () => ( <PhotoContainer tag='coffee' />)} />
+            <Route path="/computers" render={ () => ( <PhotoContainer tag='computer' />)} />
+            <Route path="/search/:tag" render={ () => ( <PhotoContainer tag='computer' />)} />
             <Route component={NotFound} />
           </Switch>
         </div>

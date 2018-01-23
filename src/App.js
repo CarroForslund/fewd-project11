@@ -16,18 +16,21 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          {/* On Search:
-            - update route to /search/:tag
-            - pass input value to PhotoContainer as "tag" and render PhotoContainer */}
-          <Route path="/search" render={ () => <SearchForm onSearch={""} /> } />
-          <Nav />
+
+          <Route path="/search" component={SearchForm} />
+          <Route component={Nav} />
+
           <Switch>
             <Route exact path="/" render={ () => <Redirect to="/cats" /> } />
             <Route path="/cats" render={ () => <PhotoContainer tag="cats" /> } />
-            <Route path="/coffee" render={ () => <PhotoContainer tag="coffee" /> } />
-            <Route path="/computers" render={ () => <PhotoContainer tag="computers" /> } />
-            {/*<Route path="/search/:tag" render={ () => ( <PhotoContainer tag={:tag} />)} />*/}
+            <Route path="/horses" render={ () => <PhotoContainer tag="horses" /> } />
+            <Route path="/dogs" render={ () => <PhotoContainer tag="dogs" /> } />
+
+            {/* On search update PhotoContainer with tag from the search query */}
+            <Route path="/search/:tag" render={ props => ( <PhotoContainer tag={props.match.params.tag} />)} />
+            
             <Route component={NotFound} />
+
           </Switch>
         </div>
       </BrowserRouter>

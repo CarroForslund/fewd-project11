@@ -13,6 +13,7 @@ class PhotoContainer extends React.Component {
     };
   }
 
+  //Fetch data and set state
   loadContent = (tag) => {
     this.setState({
       loading: true
@@ -26,6 +27,7 @@ class PhotoContainer extends React.Component {
     });
   }
 
+  //Run this code when component did mount
   componentDidMount = () => {
     this.loadContent(this.props.tag);
   }
@@ -43,45 +45,36 @@ class PhotoContainer extends React.Component {
 
   render() {
     const tag = this.props.tag;
-    // let result;
-    //
-    // if (!this.state.photos.length === 0) {
-    //   result = this.state.photos.map(photo =>
-    //             <Photo
-    //               url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-    //               title={photo.title}
-    //               key={photo.id}
-    //             />
-    //           );
-    // }
-    // else {
-    //   result = <NotFound />;
-    // }
 
-    // Check if state.loading === true,
-    // if so, show loading, otherwise, show the photos.
+    // If state loading is true display "Loading..."
+    // Else display photos
     if (this.state.loading) {
       return <p>Loading...</p>;
-    } else {
-      //If valid search tag return Photo
-      //Else return NotFound
-      return (
-        <div className="photo-container">
-          <h2>{tag}</h2>
-          <ul>
-            {
-              // result
-              this.state.photos.map(photo =>
-                <Photo
-                  url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-                  title={photo.title}
-                  key={photo.id}
-                />
-              )
-            }
-          </ul>
-        </div>
-      );
+    }
+    else {
+      //If no photos were found, return NotFound
+      //Else fill PhotoContainer with photos
+      if (this.state.photos.length === 0) {
+        return <NotFound />
+      }
+      else {
+        return (
+          <div className="photo-container">
+            <h2>{tag}</h2>
+            <ul>
+              {
+                this.state.photos.map(photo =>
+                  <Photo
+                    url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+                    title={photo.title}
+                    key={photo.id}
+                  />
+                )
+              }
+            </ul>
+          </div>
+        );
+      }
     }
   }
 }

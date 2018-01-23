@@ -2,10 +2,10 @@ import React from 'react';
 
 const NotFound = (props) => (
 
-  <li className="not-found">
+  <div className="not-found">
     <h3>No Results Found</h3>
-    <p>Please enter a valid search query</p>
-  </li>
+    <p>Please click a link above or enter a valid search query</p>
+  </div>
 
 );
 

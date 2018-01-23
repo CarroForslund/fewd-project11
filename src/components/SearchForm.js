@@ -1,28 +1,11 @@
 import React, { Component } from 'react';
-import PhotoContainer from './PhotoContainer';
 
 export default class SearchForm extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: ''
-    };
-  }
-
-  //Update state with user input
-  onSearchChange = (e) => {
-    console.log('on search change e-value', e);
-    this.setState({
-      searchText: e.target.value
-    });
-  }
-
   //Handle onSubmit from the form
   handleSubmit = (e) => {
-    console.log('handle submit e-value', e);
     e.preventDefault();
-    this.props.onSearch(this.state.searchText);
+    this.props.history.push(`/search/${this.query.value}`);
     e.currentTarget.reset();
   }
 
@@ -30,7 +13,6 @@ export default class SearchForm extends Component {
     return (
       <form className="search-form" onSubmit={this.handleSubmit}>
         <input
-          onChange={this.onSearchChange}
           type="search"
           name="search"
           ref={(input) => this.query = input}

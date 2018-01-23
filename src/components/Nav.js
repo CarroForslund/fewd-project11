@@ -6,10 +6,10 @@ const Nav = (props) => (
   <div>
     <nav className="main-nav">
       <ul>
-        <NavItem link="Cats" />
-        <NavItem link="Coffee" />
-        <NavItem link="Computers" />
-        <NavItem link="Search" />
+        <NavItem link="cats" />
+        <NavItem link="horses" />
+        <NavItem link="dogs" />
+        <NavItem link="search" />
       </ul>
     </nav>
   </div>

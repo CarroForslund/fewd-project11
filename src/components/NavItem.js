@@ -1,10 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavItem = (props) => (
+const NavItem = (props) => {
 
-  <li><NavLink to={`/${props.link}`}>{props.link}</NavLink></li>
+  //Capitalize link
+  const link = props.link.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 
-);
+  return <li><NavLink to={`/${props.link}`}>{link}</NavLink></li>;
+
+}
 
 export default NavItem;

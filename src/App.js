@@ -17,8 +17,8 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           {/* On Search:
-            - pass input value to PhotoContainer as "tag" and render PhotoContainer
-            - update route to /search/:tag */}
+            - update route to /search/:tag
+            - pass input value to PhotoContainer as "tag" and render PhotoContainer */}
           <Route path="/search" render={ () => <SearchForm onSearch={""} /> } />
           <Nav />
           <Switch>

@@ -7,6 +7,7 @@ class PhotoContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      match: props.match,
       photos: [],
       loading: true
     };
@@ -42,20 +43,28 @@ class PhotoContainer extends React.Component {
 
   render() {
     const tag = this.props.tag;
-    // TODO: Check if state.loading === true,
+    // Check if state.loading === true,
     // if so, show loading, otherwise, show the photos.
-    return (
-      <div className="photo-container">
-        <h2>{tag}</h2>
-        <ul>
-          {
-            this.state.photos.map(photo =>
-              <Photo url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} title={photo.title} key={photo.id} />
-            )
-          }
-        </ul>
-      </div>
-    );
+    if (this.state.loading) {
+      return <p>Loading...</p>;
+    } else {
+      return (
+        <div className="photo-container">
+          <h2>{tag}</h2>
+          <ul>
+            {
+              this.state.photos.map(photo =>
+                <Photo
+                  url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+                  title={photo.title}
+                  key={photo.id}
+                />
+              )
+            }
+          </ul>
+        </div>
+      );
+    }
   }
 }
 

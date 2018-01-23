@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PhotoContainer from './PhotoContainer';
 
-export default class Search extends Component {
+export default class SearchForm extends Component {
 
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ export default class Search extends Component {
   onSearchChange = (e) => {
     console.log('on search change e-value', e);
     this.setState({
-      searchText: e.target
+      searchText: e.target.value
     });
   }
 
@@ -22,8 +22,7 @@ export default class Search extends Component {
   handleSubmit = (e) => {
     console.log('handle submit e-value', e);
     e.preventDefault();
-    this.onSearchChange(this.state.searchText);
-    PhotoContainer.loadContent(this.state.searchText);
+    this.props.onSearch(this.state.searchText);
     e.currentTarget.reset();
   }
 

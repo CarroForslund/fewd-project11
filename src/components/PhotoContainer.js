@@ -1,6 +1,7 @@
 import React from 'react';
 import Photo from './Photo';
 import FetchData from './FetchData';
+import NotFound from './NotFound';
 
 class PhotoContainer extends React.Component {
 
@@ -42,20 +43,46 @@ class PhotoContainer extends React.Component {
 
   render() {
     const tag = this.props.tag;
-    // TODO: Check if state.loading === true,
+    // let result;
+    //
+    // if (!this.state.photos.length === 0) {
+    //   result = this.state.photos.map(photo =>
+    //             <Photo
+    //               url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+    //               title={photo.title}
+    //               key={photo.id}
+    //             />
+    //           );
+    // }
+    // else {
+    //   result = <NotFound />;
+    // }
+
+    // Check if state.loading === true,
     // if so, show loading, otherwise, show the photos.
-    return (
-      <div className="photo-container">
-        <h2>{tag}</h2>
-        <ul>
-          {
-            this.state.photos.map(photo =>
-              <Photo url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} title={photo.title} key={photo.id} />
-            )
-          }
-        </ul>
-      </div>
-    );
+    if (this.state.loading) {
+      return <p>Loading...</p>;
+    } else {
+      //If valid search tag return Photo
+      //Else return NotFound
+      return (
+        <div className="photo-container">
+          <h2>{tag}</h2>
+          <ul>
+            {
+              // result
+              this.state.photos.map(photo =>
+                <Photo
+                  url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+                  title={photo.title}
+                  key={photo.id}
+                />
+              )
+            }
+          </ul>
+        </div>
+      );
+    }
   }
 }
 
